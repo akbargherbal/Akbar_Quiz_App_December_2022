@@ -1,0 +1,3 @@
+Auto Submission wiht results saved in data.txt
+NAME OF QUIZ IS BEING PASSED FROM FRONT TO BACK TO FRONT
+Added Favicon.ico

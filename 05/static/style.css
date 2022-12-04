@@ -1,0 +1,39 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.hide {
+    display: none;
+}
+
+
+.start_screen {
+    padding: 20%;
+    border: 1px solid black;
+}
+
+.start{
+    font-size: 2rem !important;
+}
+
+.start{
+    margin: .5rem;
+}
+
+
+
+#answer_area {
+    width: 60%;
+}
+
+#submit_button{
+    width: 30%;
+    color: rgb(58, 162, 10);
+    background-color: antiquewhite;
+}
+
+.answer_area{
+    font-size: 2rem;
+}

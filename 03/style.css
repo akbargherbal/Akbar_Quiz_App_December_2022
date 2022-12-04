@@ -1,0 +1,42 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.hide {
+    display: none;
+}
+
+
+.start_screen {
+    padding: 20%;
+    border: 1px solid black;
+}
+
+.start{
+    font-size: 2rem !important;
+}
+
+.start{
+    margin: .5rem;
+}
+
+/* #result {
+    display: flex;
+    justify-content: space-between;
+} */
+
+#answer_area {
+    width: 60%;
+    font-size: 1.2rem;
+    text-indent: 0.5rem !important;
+}
+
+#submit_button{
+    width: 30%;
+    font-size: 1.2rem;
+    color: rgb(58, 162, 10);
+    background-color: antiquewhite;
+}
+
