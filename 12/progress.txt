@@ -1,0 +1,5 @@
+Auto Submission wiht results saved in data.txt
+NAME OF QUIZ IS BEING PASSED FROM FRONT TO BACK TO FRONT
+Added Favicon.ico
+A lot of metrics managed to be exported from quiz; now they need to be processed.
+We could make lemma as an identifier; for revision. [No more constraint on only giving correct answers etc; like the case with Quizziz!).

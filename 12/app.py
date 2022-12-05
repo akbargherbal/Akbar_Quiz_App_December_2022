@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import cross_origin
 import pandas as pd
+from get_csv_file import open_zip_csv
 
-quiz_set_from_flask =  pd.read_csv('VERB_QUIZ_004.csv', encoding='utf-8').to_dict(orient = 'records')
+quiz_set_from_flask =  open_zip_csv(0,0).to_dict(orient = 'records')
 
 quiz_name_from_flask = 'VERB_QUIZ_004'
 
@@ -29,7 +30,8 @@ def index():
         except Exception as e:
             print(f'Error: {e}', flush=True)
             
-    return render_template('index.html', quiz_set_from_flask=quiz_set_from_flask, quiz_name_from_flask=quiz_name_from_flask)
+    return render_template('index.html', quiz_set_from_flask=quiz_set_from_flask, 
+                                        quiz_name_from_flask=quiz_name_from_flask)
 
 
 @app.route('/data', methods=['POST', 'GET'])
