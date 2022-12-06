@@ -26,7 +26,7 @@ const ui_score = document.getElementById('score')
 const ui_answer_text = document.getElementById('answer_area')
 const ui_submit_answer = document.getElementById('submit_button')
 
-
+const ui_progress_bar = document.getElementById('prog_bar')
 
 var quiz_number = 0
 var choices;
@@ -34,6 +34,8 @@ var choices;
 var correct_answers = 0;
 var wrong_answers = 0;
 var score = 0;
+
+var progress = 0;
 
 
 ui_start.addEventListener('click', startGame)
@@ -95,6 +97,12 @@ function submitAnswer() {
     ui_wrong_answers.textContent = `Wrong Answers: ${wrong_answers}`
     ui_score.textContent = `Score: ${score}%`
     ui_answer_text.value = ''
+
+    progress = Math.floor(100 * ((correct_answers + wrong_answers) / quiz_length))
+    ui_progress_bar.ariaValueNow = `${progress}`
+    ui_progress_bar.ariaValueText = `${progress}%`
+    ui_progress_bar.style.width = `${progress}%`
+
     makeQuiz()
 }
 

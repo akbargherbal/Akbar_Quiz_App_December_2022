@@ -1,38 +1,68 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import cross_origin
+
+from utilities import get_datetime_now, get_quiz_collection
 import pandas as pd
-from utilities import open_zip_csv
+from zipfile import ZipFile
+import os
 
-quiz_set_from_flask =  open_zip_csv(0,0).to_dict(orient = 'records')
 
-quiz_name_from_flask = 'VERB_QUIZ_004'
+quiz_repo = os.listdir('quiz_repo')
+quiz_repo_dict = {int(i.split('_')[0]):f'quiz_repo/{i}' for i in quiz_repo if i.endswith('.zip')}
+
+path_to_quiz_collection = 'quiz_repo/01_EN_NOUN_AV_16NOV2022.zip'
+zf = ZipFile(path_to_quiz_collection)
+
+# Add condition to read only untried quizzes.
+quiz_path = get_quiz_collection(path_to_quiz_collection)
+quiz_path = quiz_path[0]
+zf = ZipFile(path_to_quiz_collection)
+
+
+quiz_set_from_flask =  pd.read_csv(zf.open(quiz_path), encoding='utf-8').to_dict(orient = 'records')
+quiz_name_from_flask = quiz_path
 
 app = Flask(__name__)
 app.static_folder = 'static'
 
 
-@app.route('/quiz' , methods=['GET', 'POST'])
+@app.route('/quiz' , methods=['POST'])
 @cross_origin()
 def quiz():
-    if request.method == 'POST': # Posting Quiz Results!
-        print('Entering Post!!!', flush=True)
-        result = request.values
-        result = result.to_dict()
-        print(f'{result}', flush=True)
-        
-        with open('data.txt', '+a', encoding='utf-8') as f:
-            for v in result.values():
-                f.write(f'{v} ')
-            f.write('\n')
-        try:
-            quiz_name = request.form.get('quiz_name')
-            print(f'Quiz Name: {quiz_name}', flush=True)
-        except Exception as e:
-            print(f'Error: {e}', flush=True)
-    kwargs = {'quiz_set_from_flask': quiz_set_from_flask,
-            'quiz_name_from_flask': quiz_name_from_flask}
+    print('Entering QUIZ PAGE!!!', flush=True)
+    try:
+        if 'request_quiz_name' in request.form.to_dict():
+            quiz_id = int(request.form.get('request_quiz_name'))
+            quiz_path = quiz_repo_dict[quiz_id]
+            zf = ZipFile(quiz_path)
+            quiz_path = get_quiz_collection(quiz_path)
+            quiz_path = quiz_path[0] # Add condition to read only untried quizzes.
+
+            print(f'Quiz_Path: {quiz_path}', quiz_path, flush=True)
     
-    return render_template('quiz.html', **kwargs)
+            quiz_set_from_flask =  pd.read_csv(zf.open(quiz_path), encoding='utf-8').to_dict(orient = 'records')
+            quiz_name_from_flask = quiz_path
+
+            kwargs = {'quiz_set_from_flask':quiz_set_from_flask, 
+                    'quiz_name_from_flask':quiz_name_from_flask}
+            return render_template('quiz.html', **kwargs)
+
+        elif 'quiz_result' in request.form.to_dict():
+
+            print(f'''
+Saving Quiz Result:
+{request.form.to_dict()}
+-------------------------------------------------------------------------
+''', quiz_path, flush=True)
+        else:
+            print(f'Else Statement! Redirecting to Home Page:', flush=True)
+            return render_template('home.html')
+
+    except Exception as e:
+        print(f'Error: {e}', flush=True)
+        print(f'Exception Occured! Redirecting to Home Page:', flush=True)
+        print('#'*100, flush=True)
+        return render_template('home.html')
 
 
 @app.route('/home', methods=['GET', 'POST'])

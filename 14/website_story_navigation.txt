@@ -1,0 +1,20 @@
+USER VISIT HOME PAGE					<<<< Point of Interface
+USER CLICK QUIZ TYPE
+	POST REQUEST TO BACK END
+
+BACK END RESPONSE:
+	RENDER TEMPLATE (QUIZ) with QUIZ TYPE [line 2]
+
+USER IS REDIRECTED TO QUIZ PAGE
+USER ANSWER QUIZ
+USER POST DATA TO BACKEND
+
+BACKEND REGISTER DATA
+BACK END RENDER HOME PAGE
+
+
+----------------
+
+Structure:
+	Quiz Repository
+		contains zipped quiz files in csv formtats.

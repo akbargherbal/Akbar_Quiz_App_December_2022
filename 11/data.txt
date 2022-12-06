@@ -3,3 +3,5 @@ thriving took picked filled VERB_QUIZ_004 2022-12-04T18:20:25.638Z 145 4
 thriving took picked filled VERB_QUIZ_004 2022-12-04T18:20:25.638Z 145 4 
 return find look shown thriving stood put seemed fumbled got give sat took drew picked opened done made filled nodded VERB_QUIZ_004 2022-12-04T20:46:59.222Z 0 20 
 return find look shown thriving stood put seemed fumbled got give sat took drew picked opened done made filled nodded VERB_QUIZ_004 2022-12-04T23:30:37.634Z 0 20 
+return find look shown thriving stood put seemed fumbled got give sat took drew picked opened done made filled nodded VERB_QUIZ_004 2022-12-05T16:01:39.526Z 3 20 
+return find look shown thriving stood put seemed fumbled got give sat took drew picked opened done made filled nodded VERB_QUIZ_004 2022-12-05T16:05:27.760Z 8 20 

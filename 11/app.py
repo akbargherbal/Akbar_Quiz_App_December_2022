@@ -15,9 +15,34 @@ app.static_folder = 'static'
 def index():
     if request.method == 'POST':
         print('Entering Post!!!', flush=True)
+        print(f'''
+Entering Post!!!
+-------------------------------------------------------------------------
+printing: request.form: 
+{request.form}
+-------------------------------------------------------------------------
+printing: dir(request) 
+{dir(request)}
+-------------------------------------------------------------------------
+printing: request.values
+{request.values}
+-------------------------------------------------------------------------
+printing: request.data
+{request.data}
+-------------------------------------------------------------------------
+printing: request.args
+{request.args}
+-------------------------------------------------------------------------
+printing: request.form
+{request.form}
+-------------------------------------------------------------------------
+printing request.form.to_dict()
+{request.form.to_dict()}
+-------------------------------------------------------------------------
+'''.strip(), flush=True)
         result = request.values
         result = result.to_dict()
-        print(f'{result}', flush=True)
+        print(f'RESULTS: {result}', flush=True)
         
         with open('data.txt', '+a', encoding='utf-8') as f:
             for v in result.values():
